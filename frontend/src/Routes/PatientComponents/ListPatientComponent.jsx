@@ -70,6 +70,7 @@ class ListPatientComponent extends Component {
         ).set({ title: "Attention" }).set({ transition: 'slide' }).show();
     }
     viewPatient(id) {
+        console.log(id);
         window.localStorage.setItem("id", id);
         this.props.history.push('/view-patient/' + id);
     }

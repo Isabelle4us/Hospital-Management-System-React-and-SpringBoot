@@ -13,9 +13,9 @@ class AddPatientComponent extends Component {
             name: '',
             tel: '',
             gender: 'MALE',
-            bornDate: new Date(),
+            birthday: new Date(),
             bloodType: 'A',
-            SSN: '',
+            ssn: '',
             status: 1
         }
     }
@@ -23,7 +23,7 @@ class AddPatientComponent extends Component {
     controlQuickly() {
         return this.state.patientNo === null || this.state.patientNo === ''
         || this.state.name === null || this.state.name === ''
-        || this.state.SSN === null || this.state.SSN === '';
+        || this.state.ssn === null || this.state.ssn === '';
     }
     saveUser = (e) => {
         if (!this.controlQuickly()) {
@@ -56,12 +56,11 @@ class AddPatientComponent extends Component {
         this.props.history.push('/patients');
     }
     render() {
-        //let bornDate = this.state.bornDate;
         const isWeekday = date => {
             const day = date.getDay(date);
             return day !== 0 && day !== 6;
         };
-        let { patientNo, name, tel, gender, bornDate, bloodType, SSN } = this.state;
+        let { patientNo, name, tel, gender, birthday, bloodType, ssn } = this.state;
         return (
             <div className="row">
                 <div className="col-sm-12">
@@ -101,8 +100,8 @@ class AddPatientComponent extends Component {
                                     className="form-control"
                                     // showTimeSelect
                                     showTimeInput
-                                    selected={bornDate}
-                                    onChange={e => this.onChangeData('bornDate', e)}
+                                    selected={birthday}
+                                    onChange={e => this.onChangeData('birthday', e)}
                                     filterDate={isWeekday}          // disable weekend
                                     timeIntervals={15}              // time range around 15 min
                                     //showWeekNumbers               // show week number
@@ -122,8 +121,8 @@ class AddPatientComponent extends Component {
                             </select>
                         </div>
                         <div className="form-group">
-                            <label>SSN *</label>
-                            <input placeholder="SSN" name="SSN" className="form-control" value={SSN} onChange={e => this.onChangeData('SSN', e.target.value)} />
+                            <label>ssn *</label>
+                            <input placeholder="ssn" name="ssn" className="form-control" value={ssn} onChange={e => this.onChangeData('ssn', e.target.value)} />
                         </div>
 
                         <button className="btn btn-success" type="button" onClick={this.saveUser}>Save</button>

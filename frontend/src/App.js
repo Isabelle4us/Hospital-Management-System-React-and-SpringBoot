@@ -29,7 +29,7 @@ function App() {
               <Switch>
                 <Route path="/" exact component={ListPatientComponent} />
                 <Route path="/patients" component={ListPatientComponent} />
-                <Route path="/view-patient/:patientid" component={ViewPatientComponent} />
+                <Route path="/view-patient/:id" component={ViewPatientComponent} />
                 <Route path="/add-patient" component={AddPatientComponent} />
                 <Route path="/edit-patient" component={EditPatientComponent} />
                 <Route path="/add-problem" component={ProblemFormComponent} />

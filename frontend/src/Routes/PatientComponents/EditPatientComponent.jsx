@@ -13,7 +13,7 @@ export default class EditPatientComponent extends Component {
             name: '',
             tel: '',
             gender: 'MALE',
-            bornDate: new Date(),
+            birthday: new Date(),
             bloodType: 'A',
             SSN: "",
             status: 1
@@ -35,7 +35,7 @@ export default class EditPatientComponent extends Component {
                 name: p.name,
                 tel: p.tel,
                 gender: p.gender,
-                bornDate: p.birthday,
+                birthday: p.birthday,
                 bloodType: p.bloodType,
                 SSN: p.SSN,
             });
@@ -56,10 +56,10 @@ export default class EditPatientComponent extends Component {
         this.setState({ stateData });
     }
     render() {
-        let bornDate = new Date();
+        let birthday = new Date();
 
-        if (this.state.bornDate !== null)
-            bornDate = new Date(this.state.bornDate.toString());
+        if (this.state.birthday !== null)
+            birthday = new Date(this.state.birthday.toString());
         const isWeekday = date => {
             const day = date.getDay(date);
             return day !== 0 && day !== 6;
@@ -92,14 +92,14 @@ export default class EditPatientComponent extends Component {
                         </div>
                         <div className="form-group">
                             <label>Born Date:</label>
-                            {bornDate !== null ?
+                            {birthday !== null ?
                                 <div className="form-group">
                                     <DatePicker
                                         className="form-control"
                                         // showTimeSelect
                                         showTimeInput
-                                        selected={bornDate}
-                                        onChange={e => this.onChangeData('bornDate', e)}
+                                        selected={birthday}
+                                        onChange={e => this.onChangeData('birthday', e)}
                                         filterDate={isWeekday}          // disable weekend
                                         timeIntervals={15}              // time range around 15 min
                                         //showWeekNumbers               // show week number

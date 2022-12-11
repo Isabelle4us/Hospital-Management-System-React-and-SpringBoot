@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PatientService from '../../services/PatientService'; 
 import PatientDetail from '../BasicComponent/PatientDetail';
 import AlertifyService from '../../services/AlertifyService';
-import ProblemsComponent from './ProblemComponent/ProblemsComponent';
  
 export default class ViewPatientComponent extends Component {
     constructor(props) {
@@ -14,7 +13,7 @@ export default class ViewPatientComponent extends Component {
             name: '',
             tel: '',
             gender: '',
-            bornDate: null,
+            birthday: null,
             bloodType: '',
             SSN: '',
             status: 1
@@ -71,22 +70,19 @@ export default class ViewPatientComponent extends Component {
                             patientNo={patient.patientNo}
                             name={patient.name}
                             tel={patient.tel}
-                            bornDate={patient.birthday}
+                            birthday={patient.birthday}
                             gender={patient.gender}
                             bloodType={patient.bloodType}
                             SSN={patient.SSN}
                             showButtons={true}
-                            // array={[patientNo, name, tel, gender, bornDate, bloodType, SSN]}
+                            // array={[patientNo, name, tel, gender, birthday, bloodType, SSN]}
                         />
                         : null}
                 </div> 
                 <div className="col"></div>
                 <div className="col-lg-4">
                     <img style={{ height: 300 }} src="https://cdn4.iconfinder.com/data/icons/business-colored-vol-1/100/business-colored-7-05-512.png" alt="" />
-                </div> 
-                <div className="col-lg-12">
-                        <ProblemsComponent   patientid={this.state.id}/>
-                </div> 
+                </div>
             </div>
         )
     }
