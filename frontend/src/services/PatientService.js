@@ -2,7 +2,7 @@ import ApiService from "./ApiService";
 
 
 const PATIENT_API_BASE_URL = '/patient';
-const CITIES = '/cities';
+const PHYSICIANS = '/physician';
 class PatientService {
 
     getPatients() {
@@ -10,12 +10,8 @@ class PatientService {
     }
 
     getPatientById(patientId) {
-        return ApiService.getOneById(PATIENT_API_BASE_URL + '/find-by-id/' + patientId);
+        return ApiService.getOneById(PATIENT_API_BASE_URL + '/' + patientId);
     }
-
-    // fetchPatientByEmail(email) {
-    //     return axios.get(PATIENT_API_BASE_URL + '/find-by-email/' + email);
-    // }
 
     deletePatient(Id) {
         return ApiService.deleteById(PATIENT_API_BASE_URL + '/' + Id);
@@ -26,10 +22,10 @@ class PatientService {
     }
 
     editPatient(patient) {
-        return ApiService.put(PATIENT_API_BASE_URL + '/' + patient.patientid, patient);
+        return ApiService.put(PATIENT_API_BASE_URL, patient);
     }
-    getCities() {
-        return ApiService.getAllDatas(PATIENT_API_BASE_URL+CITIES);
+    getPhysicians() {
+        return ApiService.getAllDatas(PATIENT_API_BASE_URL+PHYSICIANS);
     }
 }
 

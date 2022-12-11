@@ -9,28 +9,21 @@ class AddPatientComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            patientNo: '',
             name: '',
-            lastname: '',
-            email: '',
-            phoneNo:'',
-            gender: 'Male',
-            city: 'ANKARA',
+            tel: '',
+            gender: 'MALE',
             bornDate: new Date(),
-            status: 1,
-            cities: []
+            bloodType: 'A',
+            SSN: '',
+            status: 1
         }
-        // this.saveUser = this.saveUser.bind(this);
-        this.getAllCities();
     }
-    getAllCities() {
-        PatientService.getCities().then(res => {
-            this.setState({ cities: res.data });
 
-        });
-    }
     controlQuickly() {
-        return this.state.name === null || this.state.name === '' || this.state.name === ' ' ||
-            this.state.lastname === null || this.state.lastname === '' || this.state.lastname === ' ';
+        return this.state.patientNo === null || this.state.patientNo === ''
+        || this.state.name === null || this.state.name === ''
+        || this.state.SSN === null || this.state.SSN === '';
     }
     saveUser = (e) => {
         if (!this.controlQuickly()) {
@@ -38,7 +31,7 @@ class AddPatientComponent extends Component {
             let patient = this.state;
             PatientService.addPatient(patient)
                 .then(res => {
-                    this.setState({ message: 'User added successfully.' });
+                    this.setState({ message: 'Patient added successfully.' });
                     this.props.history.push('/patients');
                     alertify.success("Adding patient is ok");
                 }).catch((error) => {
@@ -68,7 +61,7 @@ class AddPatientComponent extends Component {
             const day = date.getDay(date);
             return day !== 0 && day !== 6;
         };
-        let { name, lastname,phoneNo, email, bornDate, gender, city } = this.state;
+        let { patientNo, name, tel, gender, bornDate, bloodType, SSN } = this.state;
         return (
             <div className="row">
                 <div className="col-sm-12">
@@ -81,20 +74,25 @@ class AddPatientComponent extends Component {
                     <h2 className="text-center">ADD PATİENT</h2>
                     <form>
                         <div className="form-group">
-                            <label>Name *</label>
-                            <input type="text" placeholder="name" name="name" className="form-control" value={name} onChange={e => this.onChangeData('name', e.target.value)} />
+                            <label>patientNo *</label>
+                            <input type="text" placeholder="patientNo" name="patientNo" className="form-control" value={patientNo} onChange={e => this.onChangeData('patientNo', e.target.value)} />
                         </div>
                         <div className="form-group">
-                            <label>Last Name *</label>
-                            <input placeholder="Last name" name="lastname" className="form-control" value={lastname} onChange={e => this.onChangeData('lastname', e.target.value)} />
+                            <label>name *</label>
+                            <input placeholder="name" name="name" className="form-control" value={name} onChange={e => this.onChangeData('name', e.target.value)} />
                         </div>
                         <div className="form-group">
-                            <label>Phone *</label>
-                            <input placeholder="Last name" name="phone No" className="form-control" value={phoneNo} onChange={e => this.onChangeData('phoneNo', e.target.value)} />
+                            <label>tel *</label>
+                            <input placeholder="tel" name="tel" className="form-control" value={tel} onChange={e => this.onChangeData('tel', e.target.value)} />
                         </div>
                         <div className="form-group">
-                            <label>Email:</label>
-                            <input placeholder="Email" name="email" className="form-control" value={email} onChange={e => this.onChangeData('email', e.target.value)} />
+                            <label>Gender *</label>
+                            <select className="form-control"
+                                value={gender}
+                                onChange={e => this.onChangeData('gender', e.target.value)} >
+                                <option value="MALE">Male</option>
+                                <option value="FEMALE">Female</option>
+                            </select>
                         </div>
                         <div className="form-group">
                             <label>Born Date *</label>
@@ -114,23 +112,18 @@ class AddPatientComponent extends Component {
                             </div>
                         </div>
                         <div className="form-group">
-                            <label>Gender *</label>
+                            <label>bloodType *</label>
                             <select className="form-control"
-                                value={gender}
-                                onChange={e => this.onChangeData('gender', e.target.value)} >
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
+                                value={bloodType}
+                                onChange={e => this.onChangeData('bloodType', e.target.value)} >
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="O">O</option>
                             </select>
                         </div>
                         <div className="form-group">
-                            <label>City *</label>
-                            <select className="form-control"
-                                value={city}
-                                onChange={e => this.onChangeData('city', e.target.value)} >
-                                {this.state.cities.map(city =>
-                                    <option key={city} value={city}>{city}</option>
-                                )}
-                            </select>
+                            <label>SSN *</label>
+                            <input placeholder="SSN" name="SSN" className="form-control" value={SSN} onChange={e => this.onChangeData('SSN', e.target.value)} />
                         </div>
 
                         <button className="btn btn-success" type="button" onClick={this.saveUser}>Save</button>

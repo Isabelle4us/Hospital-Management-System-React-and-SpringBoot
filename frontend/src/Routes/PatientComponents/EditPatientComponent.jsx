@@ -8,50 +8,43 @@ export default class EditPatientComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            patientid: '',
+            id: '',
+            patientNo: '',
             name: '',
-            lastname: '',
-            gender: 'Male',
-            email: '',
-            bornDate: null,
-            city: 'Ankara',
-            status: 1,
-            cities: []
+            tel: '',
+            gender: 'MALE',
+            bornDate: new Date(),
+            bloodType: 'A',
+            SSN: "",
+            status: 1
         }
         this.loadPatient();
         this.loadPatient = this.loadPatient.bind(this);
-        this.getAllCities();
     }
-    getAllCities() {
-        PatientService.getCities().then(res => {
-            this.setState({ cities: res.data });
-        });
-    }
+
     componentDidMount() {
         this.loadPatient();
-        this.getAllCities();
     }
 
     loadPatient() {
-        PatientService.getPatientById(window.localStorage.getItem("patientId")).then((res) => {
+        PatientService.getPatientById(window.localStorage.getItem("id")).then((res) => {
             let p = res.data;
             this.setState({
-                patientid: p.patientid,
+                id: p.id,
+                patientNo: p.patientNo,
                 name: p.name,
-                lastname: p.lastname,
-                email: p.email,
-                phoneNo: p.phoneNo,
-                bornDate: p.bornDate,
+                tel: p.tel,
                 gender: p.gender,
-                city: p.city,
-                status: p.status,
+                bornDate: p.birthday,
+                bloodType: p.bloodType,
+                SSN: p.SSN,
             });
         });
     }
     editPatient = (e) => {
         e.preventDefault();
         let patient = this.state;
-        patient['patientid'] = window.localStorage.getItem("patientId");
+        patient['id'] = window.localStorage.getItem("id");
         PatientService.editPatient(patient).then(res => {
             this.props.history.push('/patients');
             alertify.success("Updated patient is ok");
@@ -71,7 +64,7 @@ export default class EditPatientComponent extends Component {
             const day = date.getDay(date);
             return day !== 0 && day !== 6;
         };
-        let {name, lastname,phoneNo, email, gender, city} = this.state;
+        let { patientNo, name, tel, gender, bloodType, SSN } = this.state;
         return (
             <div className="row">
                 <div className="col-lg-7">
@@ -79,20 +72,23 @@ export default class EditPatientComponent extends Component {
                     <hr />
                     <form>
                         <div className="form-group">
-                            <label >User Name:</label>
+                            <label >patientNo:</label>
+                            <input type="text" placeholder="patientNo" name="patientNo" className="form-control" value={patientNo} onChange={e => this.onChangeData('patientNo', e.target.value)} />
+                        </div>
+                        <div className="form-group">
+                            <label>name:</label>
                             <input type="text" placeholder="name" name="name" className="form-control" value={name} onChange={e => this.onChangeData('name', e.target.value)} />
                         </div>
                         <div className="form-group">
-                            <label>Last Name:</label>
-                            <input type="text" placeholder="Last name" name="lastname" className="form-control" value={lastname} onChange={e => this.onChangeData('lastname', e.target.value)} />
+                            <label>tel:</label>
+                            <input type="text" placeholder="tel" name="tel" className="form-control" value={tel} onChange={e => this.onChangeData('tel', e.target.value)} />
                         </div>
                         <div className="form-group">
-                            <label>Phone No:</label>
-                            <input type="text" placeholder="phone No" name="lastphoneNoname" className="form-control" value={phoneNo} onChange={e => this.onChangeData('phoneNo', e.target.value)} />
-                        </div>
-                        <div className="form-group">
-                            <label>Email:</label>
-                            <input type="email" placeholder="Email" name="email" className="form-control" value={email} onChange={e => this.onChangeData('email', e.target.value)} />
+                            <label>Gender:</label>
+                            <select className="form-control" value={gender} onChange={e => this.onChangeData('gender', e.target.value)} >
+                                <option value="MALE">Male</option>
+                                <option value="FEMALE">Female</option>
+                            </select>
                         </div>
                         <div className="form-group">
                             <label>Born Date:</label>
@@ -117,20 +113,16 @@ export default class EditPatientComponent extends Component {
                             }
                         </div>
                         <div className="form-group">
-                            <label>Gender:</label>
-                            <select className="form-control" value={gender} onChange={e => this.onChangeData('gender', e.target.value)} >
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
+                            <label>bloodType:</label>
+                            <select className="form-control" value={bloodType} onChange={e => this.onChangeData('bloodType', e.target.value)} >
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="O">O</option>
                             </select>
                         </div>
                         <div className="form-group">
-                            <label>City:</label>
-                            <select className="form-control" value={city} onChange={e => this.onChangeData('city', e.target.value)}>
-                                {this.state.cities.map(c =>
-
-                                    <option key={c} value={c}>{c}</option>
-                                )}
-                            </select>
+                            <label>SSN:</label>
+                            <input type="text" placeholder="SSN" name="SSN" className="form-control" value={SSN} onChange={e => this.onChangeData('SSN', e.target.value)} />
                         </div>
                         <button className="btn btn-success" onClick={this.editPatient}>Update</button>
                     </form>

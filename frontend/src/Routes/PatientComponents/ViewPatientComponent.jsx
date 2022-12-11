@@ -8,16 +8,16 @@ export default class ViewPatientComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            patientid: props.match.params.patientid,
+            id: props.match.params.id,
             patient: null,
+            patientNo: '',
             name: '',
-            lastname: '',
-            email: '',
+            tel: '',
             gender: '',
             bornDate: null,
-            city: '',
-            problems: [],  
-            message: null 
+            bloodType: '',
+            SSN: '',
+            status: 1
         }
         this.loadPatient = this.loadPatient.bind(this); 
     }
@@ -27,12 +27,11 @@ export default class ViewPatientComponent extends Component {
     }
     
     loadPatient() {
-        PatientService.getPatientById(this.state.patientid).then(res => {
+        PatientService.getPatientById(this.state.id).then(res => {
             let p = res.data;
             this.setState({ patient: p });
             this.setState({
-                patientid: p.patientid,
-                problems: p.problems
+                id: p.id
             }); 
         }).catch((error) => {
             if (error.response) {
@@ -43,13 +42,7 @@ export default class ViewPatientComponent extends Component {
             else console.log(error.message);
         });
     } 
-    viewProblem(problemid) { 
-        this.props.history.push('/problem/' + problemid);
-    }
-    viewProblemForm(patientid){ 
-        window.localStorage.setItem("patientId", patientid);
-        this.props.history.push('/add-problem'); 
-    } 
+
     back(){
         this.props.history.push('/patients'); 
     }
@@ -74,16 +67,16 @@ export default class ViewPatientComponent extends Component {
                 <div className="col-lg-7">
                     {patient != null ?
                         <PatientDetail
-                            patientid={patient.patientid}
+                            id={patient.id}
+                            patientNo={patient.patientNo}
                             name={patient.name}
-                            lastname={patient.lastname}
-                            phoneNo={patient.phoneNo}
-                            email={patient.email}
-                            city={patient.city}
-                            bornDate={patient.bornDate}
+                            tel={patient.tel}
+                            bornDate={patient.birthday}
                             gender={patient.gender}
+                            bloodType={patient.bloodType}
+                            SSN={patient.SSN}
                             showButtons={true}
-                            // array={['patientid','name','lastname','email','city','bornDate','gender']}
+                            // array={[patientNo, name, tel, gender, bornDate, bloodType, SSN]}
                         />
                         : null}
                 </div> 
@@ -92,7 +85,7 @@ export default class ViewPatientComponent extends Component {
                     <img style={{ height: 300 }} src="https://cdn4.iconfinder.com/data/icons/business-colored-vol-1/100/business-colored-7-05-512.png" alt="" />
                 </div> 
                 <div className="col-lg-12">
-                        <ProblemsComponent   patientid={this.state.patientid}/>
+                        <ProblemsComponent   patientid={this.state.id}/>
                 </div> 
             </div>
         )
