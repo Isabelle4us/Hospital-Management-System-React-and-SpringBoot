@@ -4,6 +4,7 @@ import { Switch, Route, BrowserRouter } from "react-router-dom"; //Router,
 import ListPatientComponent from './Routes/PatientComponents/ListPatientComponent';
 import ViewPatientComponent from './Routes/PatientComponents/ViewPatientComponent';
 import AddPatientComponent from './Routes/PatientComponents/AddPatientComponent';
+import AddConsultationComponent from './Routes/PatientComponents/AddConsultationComponent';
 import EditPatientComponent from './Routes/PatientComponents/EditPatientComponent';
 import NotFoundComponent from './NotFound/NotFoundComponent';
 import ViewProblemComponent from './Routes/PatientComponents/ProblemComponent/ViewProblemComponent';
@@ -23,7 +24,7 @@ function App() {
           <a href="/">
             {/* style={{width: 400, height: 100}}  */}
             <img style={{ height: "100px", margin: "10px 0"}}  
-            src="https://www.phuketinternationalhospital.com/en/wp-content/themes/pih/images/logo-nonetext.png" alt="" />
+            src="https://www.njha.com/media/571098/NJHA-LOGO.jpg" alt="" />
           </a>
             <BrowserRouter>
               <Switch>
@@ -31,6 +32,7 @@ function App() {
                 <Route path="/patients" component={ListPatientComponent} />
                 <Route path="/view-patient/:id" component={ViewPatientComponent} />
                 <Route path="/add-patient" component={AddPatientComponent} />
+                <Route path="/add-consultation" component={AddConsultationComponent} />
                 <Route path="/edit-patient" component={EditPatientComponent} />
                 <Route path="/add-problem" component={ProblemFormComponent} />
                 <Route path="/problem/:problemid" component={ViewProblemComponent} />

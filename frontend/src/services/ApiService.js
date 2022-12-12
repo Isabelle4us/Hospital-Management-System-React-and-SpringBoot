@@ -22,11 +22,14 @@ class ApiService {
     }
 
     post(url, data) {
-        console.log("post request: " + JSON.stringify(data));
+        const str = JSON.stringify(data, null, 4);
+        console.log("post request: " + JSON.stringify(console.log(str)));
         return axios.post(API_BASE_URL + url, data);
     }
 
     put(url, data) {
+        const str = JSON.stringify(data, null, 4);
+        console.log("put request: " + JSON.stringify(console.log(str)));
         return axios.put(API_BASE_URL + url, data);
     }
 

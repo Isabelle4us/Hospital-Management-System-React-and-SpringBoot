@@ -11,9 +11,6 @@ export default class NavbarComponent extends Component {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav">
-                            <li className="nav-item">
-                                <a className="nav-link"   href="/patients">Patients</a>
-                            </li>
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="/" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Patients
@@ -21,6 +18,7 @@ export default class NavbarComponent extends Component {
                                 <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <a className="dropdown-item"  href="/patients">Patients</a>
                                     <a className="dropdown-item"  href="/add-patient">Add Patient</a>
+                                    <a className="dropdown-item"  href="/add-consultation">Add Consultation</a>
                                 </div>
                             </li>
                         </ul>
