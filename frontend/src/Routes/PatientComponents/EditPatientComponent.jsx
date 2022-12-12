@@ -15,7 +15,7 @@ export default class EditPatientComponent extends Component {
             gender: 'MALE',
             birthday: new Date(),
             bloodType: 'A',
-            SSN: "",
+            ssn: "",
             status: 1
         }
         this.loadPatient();
@@ -37,7 +37,7 @@ export default class EditPatientComponent extends Component {
                 gender: p.gender,
                 birthday: p.birthday,
                 bloodType: p.bloodType,
-                SSN: p.SSN,
+                ssn: p.ssn,
             });
         });
     }
@@ -64,7 +64,7 @@ export default class EditPatientComponent extends Component {
             const day = date.getDay(date);
             return day !== 0 && day !== 6;
         };
-        let { patientNo, name, tel, gender, bloodType, SSN } = this.state;
+        let { patientNo, name, tel, gender, bloodType, ssn } = this.state;
         return (
             <div className="row">
                 <div className="col-lg-7">
@@ -121,8 +121,8 @@ export default class EditPatientComponent extends Component {
                             </select>
                         </div>
                         <div className="form-group">
-                            <label>SSN:</label>
-                            <input type="text" placeholder="SSN" name="SSN" className="form-control" value={SSN} onChange={e => this.onChangeData('SSN', e.target.value)} />
+                            <label>ssn:</label>
+                            <input type="text" placeholder="ssn" name="ssn" className="form-control" value={ssn} onChange={e => this.onChangeData('ssn', e.target.value)} />
                         </div>
                         <button className="btn btn-success" onClick={this.editPatient}>Update</button>
                     </form>

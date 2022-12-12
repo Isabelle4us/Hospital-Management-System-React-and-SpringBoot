@@ -15,7 +15,7 @@ export default class ViewPatientComponent extends Component {
             gender: '',
             birthday: null,
             bloodType: '',
-            SSN: '',
+            ssn: '',
             status: 1
         }
         this.loadPatient = this.loadPatient.bind(this); 
@@ -28,6 +28,7 @@ export default class ViewPatientComponent extends Component {
     loadPatient() {
         PatientService.getPatientById(this.state.id).then(res => {
             let p = res.data;
+            console.log(p);
             this.setState({ patient: p });
             this.setState({
                 id: p.id
@@ -73,9 +74,9 @@ export default class ViewPatientComponent extends Component {
                             birthday={patient.birthday}
                             gender={patient.gender}
                             bloodType={patient.bloodType}
-                            SSN={patient.SSN}
+                            ssn={patient.ssn}
                             showButtons={true}
-                            // array={[patientNo, name, tel, gender, birthday, bloodType, SSN]}
+                            // array={[patientNo, name, tel, gender, birthday, bloodType, ssn]}
                         />
                         : null}
                 </div> 

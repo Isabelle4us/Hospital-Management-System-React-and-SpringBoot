@@ -29,6 +29,7 @@ class AddPatientComponent extends Component {
         if (!this.controlQuickly()) {
             e.preventDefault();
             let patient = this.state;
+            console.log(patient);
             PatientService.addPatient(patient)
                 .then(res => {
                     this.setState({ message: 'Patient added successfully.' });
@@ -45,7 +46,7 @@ class AddPatientComponent extends Component {
                     else console.log(error.message);
                 });
         } else
-            AlertifyService.alert(' * işaretli alanları doldurunuz...');
+            AlertifyService.alert(' missing info ...');
     }
     onChangeData(type, data) {
         const stateData = this.state;
