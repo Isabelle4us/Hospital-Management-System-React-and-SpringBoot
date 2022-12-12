@@ -39,6 +39,10 @@ class PatientService {
     addConsultation(consultation) {
         return ApiService.post(CONSULTATION, consultation);
     }
+
+    getConsultations() {
+        return ApiService.getAllDatas(CONSULTATION);
+    }
 }
 
 export default new PatientService();

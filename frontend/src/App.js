@@ -5,6 +5,7 @@ import ListPatientComponent from './Routes/PatientComponents/ListPatientComponen
 import ViewPatientComponent from './Routes/PatientComponents/ViewPatientComponent';
 import AddPatientComponent from './Routes/PatientComponents/AddPatientComponent';
 import AddConsultationComponent from './Routes/PatientComponents/AddConsultationComponent';
+import ListConsultationComponent from './Routes/PatientComponents/ListConsultationComponent';
 import EditPatientComponent from './Routes/PatientComponents/EditPatientComponent';
 import NotFoundComponent from './NotFound/NotFoundComponent';
 import ViewProblemComponent from './Routes/PatientComponents/ProblemComponent/ViewProblemComponent';
@@ -32,8 +33,9 @@ function App() {
                 <Route path="/patients" component={ListPatientComponent} />
                 <Route path="/view-patient/:id" component={ViewPatientComponent} />
                 <Route path="/add-patient" component={AddPatientComponent} />
-                <Route path="/add-consultation" component={AddConsultationComponent} />
                 <Route path="/edit-patient" component={EditPatientComponent} />
+                <Route path="/consultations" component={ListConsultationComponent} />
+                <Route path="/add-consultation" component={AddConsultationComponent} />
                 <Route path="/add-problem" component={ProblemFormComponent} />
                 <Route path="/problem/:problemid" component={ViewProblemComponent} />
                 <Route path="/receipe-form" component={ReceipeFormComponent} />

@@ -54,7 +54,7 @@ class AddConsultationComponent extends Component {
             PatientService.addConsultation(consultation)
                 .then(res => {
                     this.setState({ message: 'User added successfully.' });
-                    this.props.history.push('/patients');
+                    this.props.history.push('/consultations');
                     alertify.success("Adding patient is ok");
                 }).catch((error) => {
                     console.log(error.response)
@@ -75,7 +75,7 @@ class AddConsultationComponent extends Component {
         this.setState({ stateData });
     }
     back() {
-        this.props.history.push('/patients');
+        this.props.history.push('/consultations');
     }
     render() {
         //let bornDate = this.state.bornDate;

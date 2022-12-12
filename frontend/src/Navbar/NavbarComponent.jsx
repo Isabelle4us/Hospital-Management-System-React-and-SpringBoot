@@ -18,6 +18,7 @@ export default class NavbarComponent extends Component {
                                 <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <a className="dropdown-item"  href="/patients">Patients</a>
                                     <a className="dropdown-item"  href="/add-patient">Add Patient</a>
+                                    <a className="dropdown-item"  href="/consultations">Consultations</a>
                                     <a className="dropdown-item"  href="/add-consultation">Add Consultation</a>
                                 </div>
                             </li>
