@@ -22,6 +22,49 @@ export default class NavbarComponent extends Component {
                                     <a className="dropdown-item"  href="/add-consultation">Add Consultation</a>
                                 </div>
                             </li>
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="/" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                In-Patients
+                                </a>
+                                <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a className="dropdown-item"  href="/patients">Patients</a>
+                                    <a className="dropdown-item"  href="/add-patient">Add Patient</a>
+                                    <a className="dropdown-item"  href="/consultations">Consultations</a>
+                                    <a className="dropdown-item"  href="/add-consultation">Add Consultation</a>
+                                </div>
+                            </li>
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="/" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Stuffs
+                                </a>
+                                <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a className="dropdown-item"  href="/add-physician">Add Physician</a>
+                                    <a className="dropdown-item"  href="/add-nurse">Add Nurse</a>
+                                    <a className="dropdown-item"  href="/add-surgeon">Add Surgeon</a>
+                                    <a className="dropdown-item"  href="/physicians">Physicians</a>
+                                    <a className="dropdown-item"  href="/nurses">Nurses</a>
+                                    <a className="dropdown-item"  href="/surgeons">Surgeons</a>
+                                </div>
+                            </li>
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="/" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Illness & Surgery
+                                </a>
+                                <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a className="dropdown-item"  href="/patients">Patients</a>
+                                    <a className="dropdown-item"  href="/add-patient">Add Patient</a>
+                                    <a className="dropdown-item"  href="/consultations">Consultations</a>
+                                    <a className="dropdown-item"  href="/add-consultation">Add Consultation</a>
+                                </div>
+                            </li>
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="/" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Medical Program
+                                </a>
+                                <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a className="dropdown-item"  href="/patients">Cholesterol Program</a>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </nav>
