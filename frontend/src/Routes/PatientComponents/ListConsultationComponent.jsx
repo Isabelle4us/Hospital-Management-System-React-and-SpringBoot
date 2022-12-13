@@ -43,6 +43,23 @@ class ListConsultationComponent extends Component {
             filterAllConsultations = res.data
         });
     }
+
+    viewConsultation(id) {
+        window.localStorage.setItem("id", id);
+        this.props.history.push('/view-consultation/' + id);
+    }
+
+    editConsultation(id) {
+        alertify.confirm(
+            "Are you sure to edit this consultation.",
+            ok => {
+                window.localStorage.setItem("id", id);
+                this.props.history.push('/edit-consultation');
+            },
+            cancel => { alertify.error('Cancel'); }
+        ).set({ title: "Attention" }).set({ transition: 'slide' }).show();
+    }
+
     deleteConsultation(id) {
         alertify.confirm(
             "Are you sure to delete this consultation.",
@@ -104,9 +121,7 @@ class ListConsultationComponent extends Component {
             if (index !== -1) { filterArray.splice(index, 1); }
         }
     }
-    viewPatientQuickly(patient){
-        this.setState({patient});
-    }
+
     render() {
         return (
             <div className="row">
@@ -154,8 +169,16 @@ class ListConsultationComponent extends Component {
                                                 <div className="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                                     <button
                                                         className="dropdown-item"
+                                                        onClick={() => this.viewConsultation(consultation.id)} > View </button>
+                                                    <div className="dropdown-divider"></div>
+                                                    <button
+                                                        className="dropdown-item"
+                                                        onClick={() => this.editConsultation(consultation.id)} > Edit</button>
+                                                    <div className="dropdown-divider"></div>
+                                                    <button
+                                                        className="dropdown-item"
                                                         onClick={() => this.deleteConsultation(consultation.id)}> Delete </button>
-                                                </div>
+                                                    </div>
                                             </div>
                                         </td>
                                     </tr>

@@ -31,9 +31,17 @@ class PatientService {
     getPhysicians() {
         return ApiService.getAllDatas(PHYSICIAN);
     }
+
+    getPhysicianById(id) {
+        return ApiService.getOneById(PHYSICIAN + '/' + id);
+    }
     
     getIllnesses() {
         return ApiService.getAllDatas(ILLNESS);
+    }
+
+    getIllnessById(id) {
+        return ApiService.getOneById(ILLNESS + '/' + id);
     }
 
     addConsultation(consultation) {
@@ -42,6 +50,10 @@ class PatientService {
 
     getConsultations() {
         return ApiService.getAllDatas(CONSULTATION);
+    }
+
+    getConsultationById(id) {
+        return ApiService.getOneById(CONSULTATION + '/' + id);
     }
 }
 

@@ -4,9 +4,10 @@ import { Switch, Route, BrowserRouter } from "react-router-dom"; //Router,
 import ListPatientComponent from './Routes/PatientComponents/ListPatientComponent';
 import ViewPatientComponent from './Routes/PatientComponents/ViewPatientComponent';
 import AddPatientComponent from './Routes/PatientComponents/AddPatientComponent';
+import EditPatientComponent from './Routes/PatientComponents/EditPatientComponent';
 import AddConsultationComponent from './Routes/PatientComponents/AddConsultationComponent';
 import ListConsultationComponent from './Routes/PatientComponents/ListConsultationComponent';
-import EditPatientComponent from './Routes/PatientComponents/EditPatientComponent';
+import ViewConsultationComponent from './Routes/PatientComponents/ViewConsultationComponent';
 import NotFoundComponent from './NotFound/NotFoundComponent';
 import ViewProblemComponent from './Routes/PatientComponents/ProblemComponent/ViewProblemComponent';
 import IndexPage2 from './Routes/IndexPage2';
@@ -36,6 +37,7 @@ function App() {
                 <Route path="/edit-patient" component={EditPatientComponent} />
                 <Route path="/consultations" component={ListConsultationComponent} />
                 <Route path="/add-consultation" component={AddConsultationComponent} />
+                <Route path="/view-consultation/:id" component={ViewConsultationComponent} />
                 <Route path="/add-problem" component={ProblemFormComponent} />
                 <Route path="/problem/:problemid" component={ViewProblemComponent} />
                 <Route path="/receipe-form" component={ReceipeFormComponent} />

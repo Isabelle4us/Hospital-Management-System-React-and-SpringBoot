@@ -11,37 +11,37 @@ class PatientDetail extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            id: props.id,
-            name: props.name,
-            patientNo: props.patientNo,
-            tel: props.tel,
-            ssn: props.ssn,
-            birthday: props.birthday,
-            gender: props.gender,
-            message: ''
+            id:props.id,
+            physician:props.physician,
+            patient:props.patient,
+            illness:props.illness,
+            startDate:props.startDate,
+            endDate:props.endDate,
+            diagnosed:props.diagnosed,
+            active:props.active,
         };
         // props.array.map(a => {
         //     console.log(a + ' : ' + props[a] + ' : ' + (typeof props[a]))
         // })
     }
-    editPatient(id) {
+    editConsultation(id) {
         alertify.confirm(
-            "Are you sure to edit this patient.",
+            "Are you sure to edit this consultation.",
             ok => {
                 window.localStorage.setItem("id", id);
-                this.props.history.push('/edit-patient');
+                this.props.history.push('/edit-consultation');
             },
             cancel => {
                 alertify.error('Cancel');
             }
         ).set({ title: "Attention" }).set({ transition: 'slide' }).show();
     }
-    deletePatient(id) {
+    deleteConsultation(id) {
         alertify.confirm("Are you sure to delete this patient.",
             function () {
-                PatientService.deletePatient(id)
+                PatientService.deleteConsultation(id)
                     .then(res => {
-                        window.location.href = '/patients';
+                        window.location.href = '/consultations';
                         alertify.success("Deleting is ok ");
                     })
             },
@@ -54,31 +54,38 @@ class PatientDetail extends Component {
         return (
             <div>
                 <div className="card" >
-                    <div className="card-header"> <h3> Patient Detail</h3>  </div>
+                    <div className="card-header"> <h3> Consultation Detail</h3>  </div>
                     <ul className="text-left list-group list-group-flush">
                         <li className="list-group-item"><b>id : </b>{this.props.id}</li>
-                        <li className="list-group-item"><b>name : </b>{this.props.name}</li>
-                        <li className="list-group-item"><b>patientNo : </b>{this.props.patientNo}</li>
-                        <li className="list-group-item"><b>tel : </b>{this.props.tel}</li>
-                        <li className="list-group-item"><b>ssn : </b>{this.props.ssn}</li>
-                        <li className="list-group-item"><b>birthday : </b>
-                            {this.props.birthday !== null ?
+                        <li className="list-group-item"><b>patient : </b>{this.props.patient}</li>
+                        <li className="list-group-item"><b>physician : </b>{this.props.physician}</li>
+                        <li className="list-group-item"><b>illness : </b>{this.props.illness}</li>
+                        <li className="list-group-item"><b>diagnosed : </b>{this.props.diagnosed}</li>
+                        <li className="list-group-item"><b>active : </b>{this.props.active}</li>
+                        <li className="list-group-item"><b>startDate : </b>
+                            {this.props.startDate !== null ?
                                 <Moment format="YYYY/MM/DD HH:mm">
-                                    {this.props.birthday}
+                                    {this.props.startDate}
                                 </Moment> : null
                             }
                         </li>
-                        <li className="list-group-item"><b>Gender : </b>{this.props.gender}</li>
+                        <li className="list-group-item"><b>endDate : </b>
+                            {this.props.startDate !== null ?
+                                <Moment format="YYYY/MM/DD HH:mm">
+                                    {this.props.endDate}
+                                </Moment> : null
+                            }
+                        </li>
                         {this.props.showButtons?
                         <li className="list-group-item">
                             <button
                                 className="btn btn-sm btn-success"
-                                onClick={() => this.editPatient(this.props.id)} >
+                                onClick={() => this.editConsultation(this.props.id)} >
                                 Edit
                             </button>
                             <button
                                 className="btn btn-sm btn-danger"
-                                onClick={() => this.deletePatient(this.props.id)}>
+                                onClick={() => this.deleteConsultation(this.props.id)}>
                                 Delete
                             </button>
                         </li>
