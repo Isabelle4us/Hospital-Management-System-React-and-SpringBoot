@@ -8,6 +8,14 @@ import EditPatientComponent from './Routes/PatientComponents/EditPatientComponen
 import AddConsultationComponent from './Routes/PatientComponents/AddConsultationComponent';
 import ListConsultationComponent from './Routes/PatientComponents/ListConsultationComponent';
 import ViewConsultationComponent from './Routes/PatientComponents/ViewConsultationComponent';
+
+import AddNurseComponent from './Routes/StuffComponents/AddNurseComponent';
+import ListNurseComponent from './Routes/StuffComponents/ListNurseComponent';
+import AddSurgeonComponent from './Routes/StuffComponents/AddSurgeonComponent';
+import ListSurgeonComponent from './Routes/StuffComponents/ListSurgeonComponent';
+import AddPhysicianComponent from './Routes/StuffComponents/AddPhysicianComponent';
+import ListPhysicianComponent from './Routes/StuffComponents/ListPhysicianComponent';
+
 import NotFoundComponent from './NotFound/NotFoundComponent';
 import ViewProblemComponent from './Routes/PatientComponents/ProblemComponent/ViewProblemComponent';
 import IndexPage2 from './Routes/IndexPage2';
@@ -38,6 +46,14 @@ function App() {
                 <Route path="/consultations" component={ListConsultationComponent} />
                 <Route path="/add-consultation" component={AddConsultationComponent} />
                 <Route path="/view-consultation/:id" component={ViewConsultationComponent} />
+
+                <Route path="/add-nurse" component={AddNurseComponent} />
+                <Route path="/nurses" component={ListNurseComponent} />
+                <Route path="/add-surgeon" component={AddSurgeonComponent} />
+                <Route path="/surgeons" component={ListSurgeonComponent} />
+                <Route path="/add-physician" component={AddPhysicianComponent} />
+                <Route path="/physicians" component={ListPhysicianComponent} />
+
                 <Route path="/add-problem" component={ProblemFormComponent} />
                 <Route path="/problem/:problemid" component={ViewProblemComponent} />
                 <Route path="/receipe-form" component={ReceipeFormComponent} />

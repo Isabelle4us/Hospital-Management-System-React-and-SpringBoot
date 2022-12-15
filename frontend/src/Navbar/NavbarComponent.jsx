@@ -27,20 +27,16 @@ export default class NavbarComponent extends Component {
                                 In-Patients
                                 </a>
                                 <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a className="dropdown-item"  href="/patients">Patients</a>
-                                    <a className="dropdown-item"  href="/add-patient">Add Patient</a>
-                                    <a className="dropdown-item"  href="/consultations">Consultations</a>
-                                    <a className="dropdown-item"  href="/add-consultation">Add Consultation</a>
+                                    <a className="dropdown-item"  href="/beds">Available Beds</a>
+                                    <a className="dropdown-item"  href="/inpatients">In-Patients</a>
+                                    <a className="dropdown-item"  href="/surgeries">Surgeries</a>
                                 </div>
                             </li>
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="/" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Stuffs
+                                Staffs
                                 </a>
                                 <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a className="dropdown-item"  href="/add-physician">Add Physician</a>
-                                    <a className="dropdown-item"  href="/add-nurse">Add Nurse</a>
-                                    <a className="dropdown-item"  href="/add-surgeon">Add Surgeon</a>
                                     <a className="dropdown-item"  href="/physicians">Physicians</a>
                                     <a className="dropdown-item"  href="/nurses">Nurses</a>
                                     <a className="dropdown-item"  href="/surgeons">Surgeons</a>
