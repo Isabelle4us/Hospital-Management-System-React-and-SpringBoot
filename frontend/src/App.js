@@ -9,6 +9,9 @@ import AddConsultationComponent from './Routes/PatientComponents/AddConsultation
 import ListConsultationComponent from './Routes/PatientComponents/ListConsultationComponent';
 import ViewConsultationComponent from './Routes/PatientComponents/ViewConsultationComponent';
 
+import ListBedComponent from './Routes/InpatientComponents/ListBedComponent';
+import AddBedComponent from './Routes/InpatientComponents/AddBedComponent';
+
 import AddNurseComponent from './Routes/StuffComponents/AddNurseComponent';
 import ListNurseComponent from './Routes/StuffComponents/ListNurseComponent';
 import AddSurgeonComponent from './Routes/StuffComponents/AddSurgeonComponent';
@@ -46,6 +49,9 @@ function App() {
                 <Route path="/consultations" component={ListConsultationComponent} />
                 <Route path="/add-consultation" component={AddConsultationComponent} />
                 <Route path="/view-consultation/:id" component={ViewConsultationComponent} />
+
+                <Route path="/beds" component={ListBedComponent} />
+                <Route path="/add-bed" component={AddBedComponent} />
 
                 <Route path="/add-nurse" component={AddNurseComponent} />
                 <Route path="/nurses" component={ListNurseComponent} />
