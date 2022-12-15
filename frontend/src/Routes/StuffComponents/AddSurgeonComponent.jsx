@@ -64,7 +64,7 @@ export default class AddSurgeonComponent extends Component {
                     <hr />
                 </div>
                 <div className="col-sm-8">
-                    <h2 className="text-center">ADD PHYSICIAN</h2>
+                    <h2 className="text-center">ADD SURGEON</h2>
                     <form>
                         <div className="form-group">
                             <label>Name *</label>

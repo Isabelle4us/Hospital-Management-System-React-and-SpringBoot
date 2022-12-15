@@ -23,6 +23,7 @@ class ApiService {
 
     post(url, data) {
         const str = JSON.stringify(data, null, 4);
+        console.log("url: " + url);
         console.log("post request: " + str);
         return axios.post(API_BASE_URL + url, data);
     }

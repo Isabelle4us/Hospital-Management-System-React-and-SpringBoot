@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import PatientService from '../../services/PatientService';
+import InpatientService from '../../services/InpatientService';
 import "@material/react-checkbox/dist/checkbox.css";
 import Checkbox from '@material/react-checkbox';
 import "alertifyjs/build/css/themes/default.min.css";
@@ -12,8 +12,10 @@ import * as alertify from 'alertifyjs';
 import Moment from 'react-moment';
 
 const items = [
-    'physicianId',
-    'date'
+    'location',
+    'date',
+    'surgeonId',
+    'patientId'
 ];
 let filterArray = []
 let checked = {
@@ -21,88 +23,86 @@ let checked = {
     patientNo: false,
     name: false
 }
-let filterAllConsultations
-class ListConsultationComponent extends Component {
+let filterAllOperations
+class ListOperationComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            consultations: [],
+            operations: [],
             message: null,
             indeterminate: false,
             filters: []
         }
-        this.reloadConsultationList = this.reloadConsultationList.bind(this);
+        this.reloadOperationList = this.reloadOperationList.bind(this);
     }
     componentDidMount() {
-        this.reloadConsultationList();
+        this.reloadOperationList();
     }
 
-    reloadConsultationList() {
-        PatientService.getConsultations().then((res) => {
-            this.setState({ consultations: res.data })
-            filterAllConsultations = res.data
+    reloadOperationList() {
+        InpatientService.getOperations().then((res) => {
+            this.setState({ operations: res.data })
+            filterAllOperations = res.data
         });
     }
 
-    addConsultation() {
-        this.props.history.push('/add-consultation');
+    addOperation() {
+        this.props.history.push('/add-operation');
     }
 
-    viewConsultation(id) {
-        window.localStorage.setItem("id", id);
-        this.props.history.push('/view-consultation/' + id);
-    }
-
-    editConsultation(id) {
+    editOperation(id) {
         alertify.confirm(
-            "Are you sure to edit this consultation.",
+            "Are you sure to edit this operation.",
             ok => {
                 window.localStorage.setItem("id", id);
-                this.props.history.push('/edit-consultation');
+                this.props.history.push('/edit-operation');
             },
             cancel => { alertify.error('Cancel'); }
         ).set({ title: "Attention" }).set({ transition: 'slide' }).show();
     }
 
-    deleteConsultation(id) {
+    deleteOperation(id) {
         alertify.confirm(
-            "Are you sure to delete this consultation.",
+            "Are you sure to delete this operation.",
             ok => {
-                PatientService.deleteConsultation(id).then(res => {
-                    this.setState({ message: 'consultation deleted successfully. ' + res });
-                    this.setState({ patients: this.state.consultations.filter(consultation => consultation.id !== id) });
+                InpatientService.deleteOperation(id).then(res => {
+                    this.setState({ message: 'operation deleted successfully. ' + res });
+                    this.setState({ patients: this.state.operations.filter(operation => operation.id !== id) });
                 });
-                alertify.success('to delete consultation is ok');
+                alertify.success('to delete operation is ok');
             },
             cancel => { alertify.error('Cancel'); }
         ).set({ title: "Attention" }).set({ transition: 'slide' }).show();
     }
 
     onChangeSearchByName = (e) => {
-        this.filterConsultations(e.target.value);
+        this.filterOperations(e.target.value);
     }
-    filterConsultations = (value) => {
-        var results = [];
-        if (filterArray.length === 1) {
-            if (filterArray[0] == 'physicianId') {
-                results = filterAllConsultations.filter(consultation => consultation[filterArray[0]] == value);
-            } else {
-                results = filterAllConsultations.filter(consultation => consultation[filterArray[0]].split('T')[0] == value);
+    filterOperations = (value) => {
+        if (filterArray.length > 0) {
+            var results = [];
+            if (value !== '' && value.length > 0) {
+                results = filterAllOperations.filter(operation => {
+                    let find = false;
+                    filterArray.forEach(function (filter) {
+                        if (filter == 'date') {
+                            let control = operation[filter].split('T')[0] == value;
+                            if (control) find = true;
+                        } else {
+                            let control = operation[filter] == value;
+                            if (control) find = true;
+                        }
+
+                    });
+                    return find;
+                });
+                this.setState({ operations: results });
             }
-            this.setState({consultations: results});
-        } else if (filterArray.length === 2) {
-            let valueArray = value.split('&');
-            let resultsById = filterAllConsultations.filter(consultation => consultation[filterArray[0]] == valueArray[0]);
-            console.log(resultsById);
-            results = resultsById.filter(consultation => consultation[filterArray[1]].split('T')[0] == valueArray[1]);
-            console.log(results);
-            this.setState({consultations: results});
-        } else if (value != null && value != '') {
+            else { this.reloadOperationList(); }
+        } else {
             alertify.set('notifier', 'delay', 2);
             //alertify.set('notifier','position', 'top-center');
             alertify.error('Please select any parameters');
-        } else {
-            this.reloadConsultationList();
         }
     }
     createCheckboxes = () => (items.map((item) => this.createCheckbox(item)))
@@ -132,15 +132,15 @@ class ListConsultationComponent extends Component {
                 <div className="col-lg-12">
                     <button
                         className="btn btn-warning"
-                        onClick={() => this.addConsultation()}>
-                        Add Consultation
+                        onClick={() => this.addOperation()}>
+                        Add Operation
                         </button>
                     <hr />
                 </div>
                 <div className="col-lg-6" >
                     <div className="form-group">
                         <input type="text"
-                            placeholder="Search Patient by choosing any parameter"
+                            placeholder="Search Inpatient by choosing any parameter"
                             name="searchByName"
                             className="form-control"
                             onChange={this.onChangeSearchByName} />
@@ -154,22 +154,30 @@ class ListConsultationComponent extends Component {
                         <table className="table table-bordered table-sm table-dark table-hover" style={{ textAlign: "center" }}>
                             <thead>
                                 <tr>
-                                    <th>Doctor</th>
+                                    <th>Surgeon</th>
+                                    <th>Patient</th>
+                                    <th>Surgery</th>
+                                    <th>Location</th>
                                     <th>Date</th>
+                                    <th>Finished</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody >
-                                {this.state.consultations.map(consultation =>
-                                    <tr key={consultation.id}>
-                                        <td>{consultation.physicianId}</td>
+                                {this.state.operations.map(operation =>
+                                    <tr key={operation.id}>
+                                        <td>{operation.surgeonId}</td>
+                                        <td>{operation.patientId}</td>
+                                        <td>{operation.surgeryId}</td>
+                                        <td>{operation.location}</td>
                                         <td>
-                                            {consultation.date !== null ?
+                                            {operation.date !== null ?
                                                 <Moment format="YYYY-MM-DD">
-                                                    {consultation.date}
+                                                    {operation.date}
                                                 </Moment>
                                                 : null}
                                         </td>
+                                        <td>{operation.finished === null ? null : operation.finished.toString()}</td>
                                         <td>
                                             <div className="btn-group" role="group">
                                                 <button id="btnGroupDrop1"
@@ -181,15 +189,11 @@ class ListConsultationComponent extends Component {
                                                 <div className="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                                     <button
                                                         className="dropdown-item"
-                                                        onClick={() => this.viewConsultation(consultation.id)} > View </button>
+                                                        onClick={() => this.editOperation(operation.id)} > Edit</button>
                                                     <div className="dropdown-divider"></div>
                                                     <button
                                                         className="dropdown-item"
-                                                        onClick={() => this.editConsultation(consultation.id)} > Edit</button>
-                                                    <div className="dropdown-divider"></div>
-                                                    <button
-                                                        className="dropdown-item"
-                                                        onClick={() => this.deleteConsultation(consultation.id)}> Delete </button>
+                                                        onClick={() => this.deleteOperation(operation.id)}> Delete </button>
                                                     </div>
                                             </div>
                                         </td>
@@ -209,4 +213,4 @@ class ListConsultationComponent extends Component {
 
 }
 
-export default ListConsultationComponent;
+export default ListOperationComponent;
