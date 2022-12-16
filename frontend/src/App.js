@@ -25,10 +25,10 @@ import ListSurgeonComponent from './Routes/StuffComponents/ListSurgeonComponent'
 import AddPhysicianComponent from './Routes/StuffComponents/AddPhysicianComponent';
 import ListPhysicianComponent from './Routes/StuffComponents/ListPhysicianComponent';
 
-import AddIllnessComponent from './Routes/StuffComponents/AddIllnessComponent';
-import ListIllnessComponent from './Routes/StuffComponents/ListIllnessComponent';
-import AddSurgeryComponent from './Routes/StuffComponents/AddSurgeryComponent';
-import ListSurgeryComponent from './Routes/StuffComponents/ListSurgeryComponent';
+import AddIllnessComponent from './Routes/SurgeryTypeComponents/AddIllnessComponent';
+import ListIllnessComponent from './Routes/SurgeryTypeComponents/ListIllnessComponent';
+import AddSurgeryComponent from './Routes/SurgeryTypeComponents/AddSurgeryComponent';
+import ListSurgeryComponent from './Routes/SurgeryTypeComponents/ListSurgeryComponent';
 
 import NotFoundComponent from './NotFound/NotFoundComponent';
 import ViewProblemComponent from './Routes/PatientComponents/ProblemComponent/ViewProblemComponent';
