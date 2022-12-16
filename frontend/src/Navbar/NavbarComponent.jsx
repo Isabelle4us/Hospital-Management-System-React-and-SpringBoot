@@ -56,7 +56,7 @@ export default class NavbarComponent extends Component {
                                 Medical Program
                                 </a>
                                 <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a className="dropdown-item"  href="/patients">Cholesterol Program</a>
+                                    <a className="dropdown-item"  href="/patientsChol">Cholesterol Program</a>
                                 </div>
                             </li>
                         </ul>
