@@ -13,7 +13,7 @@ class StaffService {
         return ApiService.post(PHYSICIANS, physician);
     }
     deletePhysician(id) {
-        return ApiService.deleteById(PHYSICIANS, id);
+        return ApiService.deleteById(PHYSICIANS + '/' + id);
     }
 
     getNurses() {
@@ -24,7 +24,7 @@ class StaffService {
         return ApiService.post(NURSES, nurse);
     }
     deleteNurse(id) {
-        return ApiService.deleteById(NURSES, id);
+        return ApiService.deleteById(NURSES + '/' + id);
     }
 
     getSurgeons() {
@@ -34,7 +34,7 @@ class StaffService {
         return ApiService.post(SURGEONS, surgeon);
     }
     deleteSurgeon(id) {
-        return ApiService.deleteById(SURGEONS, id);
+        return ApiService.deleteById(SURGEONS + '/' + id);
     }
 }
 
