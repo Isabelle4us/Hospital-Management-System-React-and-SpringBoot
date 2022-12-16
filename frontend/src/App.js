@@ -14,6 +14,9 @@ import AddBedComponent from './Routes/InpatientComponents/AddBedComponent';
 import AddOperationComponent from './Routes/InpatientComponents/AddOperationComponent';
 import ListOperationComponent from './Routes/InpatientComponents/ListOperationComponent';
 import EditOperationComponent from './Routes/InpatientComponents/EditOperationComponent';
+import AddInpatientComponent from './Routes/InpatientComponents/AddInpatientComponent';
+import ListInpatientComponent from './Routes/InpatientComponents/ListInpatientComponent';
+import EditInpatientComponent from './Routes/InpatientComponents/EditInpatientComponent';
 
 import AddNurseComponent from './Routes/StuffComponents/AddNurseComponent';
 import ListNurseComponent from './Routes/StuffComponents/ListNurseComponent';
@@ -21,6 +24,11 @@ import AddSurgeonComponent from './Routes/StuffComponents/AddSurgeonComponent';
 import ListSurgeonComponent from './Routes/StuffComponents/ListSurgeonComponent';
 import AddPhysicianComponent from './Routes/StuffComponents/AddPhysicianComponent';
 import ListPhysicianComponent from './Routes/StuffComponents/ListPhysicianComponent';
+
+import AddIllnessComponent from './Routes/StuffComponents/AddIllnessComponent';
+import ListIllnessComponent from './Routes/StuffComponents/ListIllnessComponent';
+import AddSurgeryComponent from './Routes/StuffComponents/AddSurgeryComponent';
+import ListSurgeryComponent from './Routes/StuffComponents/ListSurgeryComponent';
 
 import NotFoundComponent from './NotFound/NotFoundComponent';
 import ViewProblemComponent from './Routes/PatientComponents/ProblemComponent/ViewProblemComponent';
@@ -58,6 +66,9 @@ function App() {
                 <Route path="/operations" component={ListOperationComponent} />
                 <Route path="/add-operation" component={AddOperationComponent} />
                 <Route path="/edit-operation" component={EditOperationComponent} />
+                <Route path="/inpatients" component={ListInpatientComponent} />
+                <Route path="/add-inpatient" component={AddInpatientComponent} />
+                <Route path="/edit-inpatient" component={EditInpatientComponent} />
 
                 <Route path="/add-nurse" component={AddNurseComponent} />
                 <Route path="/nurses" component={ListNurseComponent} />
@@ -65,6 +76,11 @@ function App() {
                 <Route path="/surgeons" component={ListSurgeonComponent} />
                 <Route path="/add-physician" component={AddPhysicianComponent} />
                 <Route path="/physicians" component={ListPhysicianComponent} />
+
+                <Route path="/add-illness" component={AddIllnessComponent} />
+                <Route path="/illnesses" component={ListIllnessComponent} />
+                <Route path="/add-surgery" component={AddSurgeryComponent} />
+                <Route path="/surgeries" component={ListSurgeryComponent} />
 
                 <Route path="/add-problem" component={ProblemFormComponent} />
                 <Route path="/problem/:problemid" component={ViewProblemComponent} />

@@ -4,6 +4,7 @@ const BEDS = '/bed';
 const SURGEONS = '/surgeon';
 const SURGERIES = '/surgery';
 const OPERATIONS = '/operation';
+const INPATIENTS = '/inpatient'
 
 class InpatientService {
     getAvailableBeds() {
@@ -30,8 +31,24 @@ class InpatientService {
         return ApiService.post(OPERATIONS, operation);
     }
 
-    getOperations(operation) {
+    getOperations() {
         return ApiService.getAll(OPERATIONS);
+    }
+
+    deleteOperation(id) {
+        return ApiService.deleteById(OPERATIONS + '/' + id);
+    }
+
+    addInpatient(inpatient) {
+        return ApiService.post(INPATIENTS, inpatient);
+    }
+
+    getInpatients() {
+        return ApiService.getAll(INPATIENTS);
+    }
+
+    deleteInpatient(id) {
+        return ApiService.deleteById(INPATIENTS + '/' + id);
     }
 }
 
